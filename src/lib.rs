@@ -9,7 +9,7 @@ mod parser;
 mod printer;
 pub mod serde;
 
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, Eq)]
 pub enum ArrayType {
     Array,
     List,
@@ -77,7 +77,7 @@ impl Value {
     #[inline]
     pub fn as_str(&self) -> Option<&str> {
         match self {
-            Value::String(v) => Some(&*v),
+            Value::String(v) => Some(v.as_str()),
             _ => None,
         }
     }
